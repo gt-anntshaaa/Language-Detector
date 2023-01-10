@@ -1,0 +1,91 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+
+    // firebase
+    id 'com.google.gms.google-services'
+
+    // hilt
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.example.navigateusingviewmodel'
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.navigateusingviewmodel"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding{
+        enabled = true
+    }
+
+    // hilt
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def activity_version = "1.5.0"
+    def fragment_version = "1.5.5"
+
+    // activity
+    implementation "androidx.activity:activity-ktx:$activity_version"
+
+    // firebase bom
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+
+    // firebase detect language
+    implementation 'com.google.firebase:firebase-ml-natural-language:22.0.1'
+    implementation 'com.google.firebase:firebase-ml-natural-language-language-id-model:20.0.8'
+
+    // fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    // hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
+    // lifecycleScope
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+
+    // livedata
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+
+    // viewModelScope
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    //implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.2'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
